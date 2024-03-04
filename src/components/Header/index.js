@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaHome, FaSignInAlt, FaUserAlt } from 'react-icons/fa';
-import { Nav } from './styled';
+import { Nav } from "./styled";
 
 export default function Header() {
   return (
     <Nav>
+
       <a href="/home">
         <FaHome size={24} />
       </a>
