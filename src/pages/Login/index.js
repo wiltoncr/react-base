@@ -10,6 +10,7 @@ export default function Login() {
         <spam>OIe</spam>
       </Title>
       <p>Lorem*5</p>
+      <button type="submit">teste</button>
     </Container>
   );
 }
