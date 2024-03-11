@@ -1,17 +1,16 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'; // Certifique-se de usar BrowserRouter
-import history from './services/history';
+import { BrowserRouter as Router } from 'react-router-dom';
 import GlobalStyle from './styles/GlocalStyles';
 import Header from './components/Header';
-import RoutesApp from './routes'; // Importe o componente que contém suas rotas
+import RoutesApp from './routes';
 
 function App() {
   return (
-    <BrowserRouter history={history}>
+    <Router>
       <Header />
-      <RoutesApp /> {/* Utilize o componente que contém suas rotas */}
+      <RoutesApp />
       <GlobalStyle />
-    </BrowserRouter>
+    </Router>
   );
 }
 
