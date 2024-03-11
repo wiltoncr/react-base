@@ -7,7 +7,7 @@ import MyRoute from './MyRoutes';
 export default function RoutesApp() {
   return (
     <Routes>
-      <Route path="/" element={<MyRoute PageComponent={Login} />} />
+      <Route path="/login" element={<MyRoute PageComponent={Login} />} />
       <Route path="*" element={<MyRoute PageComponent={Page404} isClosed />} />
     </Routes>
   );
