@@ -9,7 +9,7 @@ export default function Login() {
   const dispatch = useDispatch();
   function handClick(e) {
     e.preventDefault();
-    dispatch(exampleActions.clicaBotao());
+    dispatch(exampleActions.clicaBotaoRequest());
   }
   return (
     <Container>

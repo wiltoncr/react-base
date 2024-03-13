@@ -6,9 +6,7 @@ import { useSelector } from 'react-redux';
 import { Nav } from './styled';
 
 export default function Header() {
-  const botaoClicado = useSelector(
-    (state) => state.exampleReducer.botaoClicado
-  );
+  const botaoClicado = useSelector((state) => state.example.botaoClicado);
   return (
     <Nav>
       <Link to="/">
