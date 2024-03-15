@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default function MyRoute({ PageComponent, isClosed, ...rest }) {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   const location = useLocation();
 
   if (isClosed && !isLoggedIn) {
