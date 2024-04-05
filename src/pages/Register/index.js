@@ -8,8 +8,11 @@ import { Container } from '../../styles/GlocalStyles';
 import { Form } from './styled';
 import axios from '../../services/axios';
 
+import Loading from '../../components/Loading';
+
 export default function Register() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -42,7 +45,7 @@ export default function Register() {
 
     // eslint-disable-next-line no-useless-return
     if (formErrors) return;
-
+    setIsLoading(true);
     try {
       await axios.post('/users', {
         nome,
@@ -50,6 +53,7 @@ export default function Register() {
         email,
       });
       toast.success('Cadastro realizado com sucesso');
+      setIsLoading(false);
       navigate('/login');
     } catch (err) {
       const errors = get(err, 'response.data.errors', []);
@@ -60,6 +64,7 @@ export default function Register() {
 
   return (
     <Container>
+      <Loading isLoading={isLoading} />
       <h1>Crie sua conta</h1>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="nome">

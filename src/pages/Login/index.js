@@ -9,10 +9,12 @@ import { Form } from './styled';
 import { Container } from '../../styles/GlocalStyles';
 import * as actios from '../../store/modules/auth/actions';
 
+import Loading from '../../components/Loading';
+
 export default function Login(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, isLoading } = useSelector((state) => state.auth);
   const prevPath = get(props, 'location.state.prevPath', '/');
 
   useEffect(() => {
@@ -46,6 +48,7 @@ export default function Login(props) {
 
   return (
     <Container>
+      <Loading isLoading={isLoading} />
       <h1>Login</h1>
       <Form onSubmit={handleSubmit}>
         <input
