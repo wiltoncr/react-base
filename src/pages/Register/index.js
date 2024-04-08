@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
-import { get } from 'lodash';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Container } from '../../styles/GlocalStyles';
 import { Form } from './styled';
-import axios from '../../services/axios';
-
 import Loading from '../../components/Loading';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Register() {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
+  const id = useSelector((state) => state.auth.user.id);
+  const nomeStored = useSelector((state) => state.auth.user.nome);
+  const emailStored = useSelector((state) => state.auth.user.email);
+  const isLoading = useSelector((state) => state.auth.isLoading);
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  React.useEffect(() => {
+    if (!id) return;
+    setNome(nomeStored);
+    setEmail(emailStored);
+  }, [emailStored, id, nomeStored]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,7 +35,7 @@ export default function Register() {
       toast.error('nome deve ter entre 3 e 255 caracters');
     }
 
-    if (password.length < 3 || password.length > 255) {
+    if (!id && (password.length < 3 || password.length > 255)) {
       formErrors = true;
       toast.error('senha deve ter entre 3 e 255 caracters');
     }
@@ -45,27 +52,14 @@ export default function Register() {
 
     // eslint-disable-next-line no-useless-return
     if (formErrors) return;
-    setIsLoading(true);
-    try {
-      await axios.post('/users', {
-        nome,
-        password,
-        email,
-      });
-      toast.success('Cadastro realizado com sucesso');
-      setIsLoading(false);
-      navigate('/login');
-    } catch (err) {
-      const errors = get(err, 'response.data.errors', []);
 
-      errors.map((error) => toast.error(error));
-    }
+    dispatch(actions.registerRequest({ nome, email, password, id }));
   }
 
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <h1>Crie sua conta</h1>
+      <h1>{id ? 'Editar dados' : 'Crie sua conta'}</h1>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="nome">
           Nome:
@@ -94,7 +88,7 @@ export default function Register() {
             placeholder="Sua senha"
           />
         </label>
-        <button type="submit">Criar minha conta</button>
+        <button type="submit">Salvar</button>
       </Form>
     </Container>
   );
