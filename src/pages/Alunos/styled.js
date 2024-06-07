@@ -17,8 +17,8 @@ export const AlunoContainer = styled.div`
 `;
 export const ProfilePicture = styled.div`
   img {
-    width: 36px;
-    height: 36px;
+    width: 86px;
+    height: 86px;
     border-radius: 50%;
   }
 `;

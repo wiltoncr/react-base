@@ -41,7 +41,7 @@ export default function Header() {
         </Link>
       )}
 
-      {isLoggedIn && <FaCircle size={24} color="#66ff33" />}
+      {isLoggedIn && <FaCircle size={24} color="#07bc0c" />}
     </Nav>
   );
 }

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
 import { get } from 'lodash';
 
-import { Form } from './styled';
+import { Form, Title } from './styled';
 import { Container } from '../../styles/GlocalStyles';
 import * as actios from '../../store/modules/auth/actions';
 
@@ -49,7 +49,7 @@ export default function Login(props) {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <h1>Login</h1>
+      <Title>Acesse sua conta</Title>
       <Form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -63,7 +63,7 @@ export default function Login(props) {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Seu Senha"
         />
-        <button type="submit">Acessar</button>
+        <button type="submit">Continuar</button>
       </Form>
     </Container>
   );

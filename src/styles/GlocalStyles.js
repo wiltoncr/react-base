@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import * as colors from '../config/colors';
+import * as fonts from '../config/fonts';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default createGlobalStyle`
@@ -11,7 +12,7 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: sans-serif;
+    font-family: ${fonts.titulo};
     background-color: ${colors.primaryDarkColor};
     color: ${colors.primaryColor};
   }
